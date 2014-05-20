@@ -18,7 +18,8 @@ module CiHelper
       new_explains = explains_to_s(new_data)
       old_explains = explains_to_s(old_data)
 
-      Rails.logger.info Diffy::Diff.new(old_explains, new_explains).to_s
+      new_explains = new_explains.gsub("[{", "[{\n   ")
+      old_explains = old_explains.gsub("[{", "[{\n   ")
 
       Diffy::Diff.new(old_explains, new_explains).to_s(:html)
     else

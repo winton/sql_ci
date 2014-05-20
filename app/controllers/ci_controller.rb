@@ -5,7 +5,9 @@ class CiController < ApplicationController
   end
 
   def show
-    data = version_data(params[:segment], params[:version])
+    @data = version_data(params[:segment], params[:version])
+    @data = @data[params[:index].to_i]
+    render text: @data.inspect
   end
 
   private

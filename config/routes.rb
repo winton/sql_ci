@@ -55,4 +55,5 @@ Rails.application.routes.draw do
   #   end
 
   root 'ci#index'
+  get ':segment/:version/:index' => 'ci#show'
 end
