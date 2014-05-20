@@ -1,0 +1,49 @@
+%style!= Diffy::CSS
+
+.container
+  .col-md-3
+    .ci-sidebar.hidden-print.affix{role: "complementary"}
+      %ul.nav
+        - @segments.each do |seg1, value|
+          %li
+            %a{ href: "##{anchor(seg1)}" }= seg1
+            %ul.nav
+              - value.keys.each do |seg2|
+                %li
+                  %a{ href: "##{anchor(seg2)}" }= seg2
+        %li
+          %a{ href: "#top" }
+            Back to top
+  .col-md-9
+    - @segments.each do |segment_1_key, segment_1_hash|
+      %h2{ id: anchor(segment_1_key) }= segment_1_key
+
+      .panel.panel-default
+        .pull-right
+          %button.btn.btn-danger.btn-xs{ type: "button" } Delete
+
+      
+        - segment_1_hash.each do |segment_2_key, segment_2_array|
+          .panel-heading{ id: anchor(segment_2_key) }= segment_2_key
+
+          %table.table.table-condensed
+            %thead
+              %tr
+                %th Status
+                %th Commit
+                %th Explains
+                %th Diff
+            %tbody
+              - segment_2_array.each_with_index do |(version, data), i|
+                %tr
+                  %td
+                    %span.fail Failing
+                  %td
+                    %a= version[0..9]
+                  %td= data.length
+                  %td!= diff(segment_2_array, i)
+                  / %strong +
+                  / %span.pass [{"possible_keys":"index_taggings_i1, index_taggings_on_tag_id_and_taggable_type, i2", "select_type":"SIMPLE", "key":"index_taggings_i1", "ref":"const, const, const", "type":"ref", "Extra":"Using where", "id":"1", "key_len":"71", "table":"taggings"}]
+                  / %br/
+                  / %strong -
+                  / %span.fail [{"possible_keys":"index_taggings_i1, index_taggings_on_tag_id_and_taggable_type, i2", "select_type":"SIMPLE", "key":"index_taggings_i1", "ref":"const, const, const", "type":"ref", "Extra":"Using where", "id":"1", "key_len":"71", "table":"taggings"}]

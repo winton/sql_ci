@@ -1,0 +1,46 @@
+// Place all the styles related to the Ci controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "bootstrap";
+
+.fail, .pass {
+	padding: 3px 4px;
+	font-size: 90%;
+	border-radius: 4px;
+}
+
+.pass {
+	background-color: #dff0d8;
+	text-shadow: 1px 1px #f5fff1;
+}
+.fail {
+	background-color: #f2dede;
+	text-shadow: 1px 1px #fcefef;
+}
+
+.ci-sidebar {
+	font-size: 15px;
+	font-weight: bold;
+
+	li {
+		line-height: 4px;
+	}
+
+	> ul > li {
+		margin-top: 10px;
+	}
+
+	ul ul {
+		margin-left: 20px;
+		font-weight: normal;
+
+		li {
+			font-size: 13px;
+		}
+	}
+}
+
+.btn-danger {
+	margin: 9px 9px 0 0;
+}
